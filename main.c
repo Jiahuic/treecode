@@ -129,16 +129,28 @@ int main(int argc, char *argv[]) {
   printf("  \n");
   printf("Runtime for treecode is %f\n",tttime);
 
+//FILE *fp=fopen("output.txt","w");
+//for (i=0;i<numpars;i++){
+//  fprintf(fp,"%d %f\n",i,tpoten[i]);
+//}
+//fclose(fp);
+
   /* compute potential directly */
   printf("  \n");
   printf("Computing potential - directly\n");
 
   sdtime = time(NULL);
-  compute_direct();
+  compute_direct3();
   edtime = time(NULL);
   tdtime = ((double)edtime-sdtime);
   printf("  \n");
   printf("Runtime for treecode is %f\n",tdtime);
+
+//FILE *fp=fopen("output.txt","w");
+//for (i=0;i<numpars;i++){
+//  fprintf(fp,"%d %f\n",i,dpoten[i]);
+//}
+//fclose(fp);
 
   printf("  \n");
   printf("Computing potential error\n");
