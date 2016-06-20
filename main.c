@@ -173,6 +173,7 @@ int main(int argc, char *argv[]) {
     free(sptpos[i]);
     free(sptnrm[i]);
     free(atmpos[i]);
+    free(nvert[i]);
   }
   for (i=0;i<2;i++){
     free(extr_f[i]);
@@ -183,6 +184,7 @@ int main(int argc, char *argv[]) {
   free(extr_f);
   free(atmpos);
   free(atmrad);
+  free(nvert);
 
   free(x);
 
