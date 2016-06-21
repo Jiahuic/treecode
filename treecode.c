@@ -197,8 +197,8 @@ void create_tree(tnode* p,int ibeg,int iend,double xyzmm[6],int level){
 
   if (maxlevel < level) maxlevel=level;
   p->num_children = 0;
-  p->child=(tnode**)malloc(8*sizeof(tnode*));
-  for (i=0;i<8;i++) p->child[i]=(tnode*)malloc(1*sizeof(tnode));
+  p->child=(tnode**)calloc(8,sizeof(tnode*));
+  for (i=0;i<8;i++) p->child[i]=(tnode*)calloc(1,sizeof(tnode));
   p->child[0]->x_min = 1.0;
 
   if (p->numpar > maxparnode){
@@ -220,11 +220,6 @@ void create_tree(tnode* p,int ibeg,int iend,double xyzmm[6],int level){
     z_mid=p->z_mid;
 
     numposchild = partition_8(xyzmms,xl,yl,zl,lmax,numposchild,x_mid,y_mid,z_mid,ind);
-
-//printf("ind %d,%d\n",ind[1][0],ind[1][1]);
-//    if (ibeg>=13322 && iend <=15055)
-//
-//      printf("from %d to %d, the number of children is %d\n",ibeg,iend, numposchild);
 
     loclev = level+1;
 
@@ -755,11 +750,13 @@ int remove_mmt(tnode *p){
 int remove_node(tnode *p){
   int i;
 
+printf("numchild %d\n",p->num_children);
   if (p->num_children > 0){
     for (i=0;i<8;i++){
       remove_node(p->child[i]);
       free(p->child[i]);
     }
+
     free(p->child);
   }
 
